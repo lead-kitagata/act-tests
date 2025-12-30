@@ -1,33 +1,11 @@
-name: Laravel Test
+name: Simple PHP Test
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+on: [push]
 
 jobs:
-  laravel-tests:
+  test:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v4
-
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.2' # お使いのPHPバージョンに合わせてください
-        extensions: mbstring, dom, curl, libxml, mysql
-        coverage: none
-
-    - name: Install Dependencies
-      run: composer install --prefer-dist --no-progress
-
-    - name: Copy .env
-      run: php -r "file_exists('.env') || copy('.env.example', '.env');"
-
-    - name: Generate key
-      run: php artisan key:generate
-
-    - name: Run Tests
-      run: php artisan test
+      - uses: actions/checkout@v4
+      - name: Run PHP Script
+        run: php test.php
