@@ -1,11 +1,21 @@
-name: Force Error Check
+name: Laravel Prep Test
 
 on: [push]
 
 jobs:
-  fail-job:
+  test:
     runs-on: ubuntu-latest
     steps:
-      - name: Command that definitely fails
-        # 「存在しないコマンド」をわざと実行させます
-        run: this-command-does-not-exist
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, dom, fileinfo, mysql
+
+      - name: Check PHP Version
+        run: php -v
+
+      - name: Run Test Script
+        run: php test.php
