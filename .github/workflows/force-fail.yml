@@ -1,0 +1,11 @@
+name: Force Error Check
+
+on: [push]
+
+jobs:
+  fail-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Command that definitely fails
+        # 「存在しないコマンド」をわざと実行させます
+        run: this-command-does-not-exist
