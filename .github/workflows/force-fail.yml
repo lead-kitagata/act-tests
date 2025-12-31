@@ -20,3 +20,5 @@ jobs:
 
       - name: Run Test
         run: php artisan test
+        env:
+          APP_KEY: base64:VnS7fO6S65N6X8XWvP3fN/O7YJ2S5I8M1L5M4N3O2P1=
